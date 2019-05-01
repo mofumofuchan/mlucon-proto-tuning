@@ -5,7 +5,7 @@
   gather_facts: no
   tasks:
     - name: bundle install
-      shell: cd /home/isucon/private_isu/webapp/ruby; bash -lc "bundle install"
+      shell: cd /home/isucon/mlucon_proto/webapp/ruby; bash -lc "bundle install"
 
 - hosts: guests:extras
 #- hosts: extras
@@ -14,7 +14,7 @@
   gather_facts: no
   tasks:
     - name: go build
-      shell: cd /home/isucon/private_isu/webapp/golang; bash -lc "./setup.sh"
+      shell: cd /home/isucon/mlucon_proto/webapp/golang; bash -lc "./setup.sh"
 
 - hosts: guests:extras
   become: yes
@@ -22,9 +22,9 @@
   gather_facts: no
   tasks:
     - name: download composer.phar
-      get_url: url=http://getcomposer.org/composer.phar dest=/home/isucon/private_isu/webapp/php/composer.phar force=1 mode=755
+      get_url: url=http://getcomposer.org/composer.phar dest=/home/isucon/mlucon_proto/webapp/php/composer.phar force=1 mode=755
     - name: composer install
-      shell: cd /home/isucon/private_isu/webapp/php; bash -lc "./composer.phar install"
+      shell: cd /home/isucon/mlucon_proto/webapp/php; bash -lc "./composer.phar install"
 
 - hosts: guests:extras
   become: yes
@@ -32,7 +32,7 @@
   gather_facts: no
   tasks:
     - name: npm install
-      shell: cd /home/isucon/private_isu/webapp/node; bash -lc "npm install"
+      shell: cd /home/isucon/mlucon_proto/webapp/node; bash -lc "npm install"
 
 - hosts: guests:extras
   become: yes

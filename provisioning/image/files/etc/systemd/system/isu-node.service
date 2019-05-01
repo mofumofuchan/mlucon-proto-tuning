@@ -3,10 +3,10 @@ Description=isu-node
 After=syslog.target
 
 [Service]
-WorkingDirectory=/home/isucon/private_isu/webapp/node
+WorkingDirectory=/home/isucon/mlucon_proto/webapp/node
 EnvironmentFile=/home/isucon/env.sh
 Environment=NODE_ENV=production
-PIDFile=/home/isucon/private_isu/webapp/node/server.pid
+PIDFile=/home/isucon/mlucon_proto/webapp/node/server.pid
 
 User=isucon
 Group=isucon

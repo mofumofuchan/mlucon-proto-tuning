@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/catatsuy/private-isu/benchmarker/util"
+	"github.com/mofumofuchan/mlucon-proto/benchmarker/util"
 	"github.com/marcw/cachecontrol"
 )
 

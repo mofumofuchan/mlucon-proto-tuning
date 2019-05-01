@@ -3,10 +3,10 @@ Description=isu-ruby
 After=syslog.target
 
 [Service]
-WorkingDirectory=/home/isucon/private_isu/webapp/ruby
+WorkingDirectory=/home/isucon/mlucon_proto/webapp/ruby
 EnvironmentFile=/home/isucon/env.sh
 Environment=RACK_ENV=production
-PIDFile=/home/isucon/private_isu/webapp/ruby/unicorn.pid
+PIDFile=/home/isucon/mlucon_proto/webapp/ruby/unicorn.pid
 
 User=isucon
 Group=isucon

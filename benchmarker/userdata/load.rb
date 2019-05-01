@@ -19,7 +19,7 @@ end
 
 
 puts "imgディレクトリに画像を展開"
-`curl -L -O https://github.com/catatsuy/private-isu/releases/download/img/img.zip`
+`curl -L -O https://github.com/mofumofuchan/mlucon-proto/releases/download/img/img.zip`
 `unzip img.zip`
 
 kaomoji = File.read('kaomoji.txt').strip().split("\n")

@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/catatsuy/private-isu/benchmarker/checker"
-	"github.com/catatsuy/private-isu/benchmarker/util"
+	"github.com/mofumofuchan/mlucon-proto/benchmarker/checker"
+	"github.com/mofumofuchan/mlucon-proto/benchmarker/util"
 )
 
 func checkHTML(f func(*goquery.Document) error) func(io.Reader) error {

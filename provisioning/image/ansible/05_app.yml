@@ -9,30 +9,30 @@
       file: path=/home/isucon/backup/ state=directory
     - name: mkdir repos
       file: path=/home/isucon/repos/ state=directory
-    - name: clean private_isu.git
-      file: path=/home/isucon/repos/private_isu.git state=absent
+    - name: clean mlucon_proto.git
+      file: path=/home/isucon/repos/mlucon_proto.git state=absent
     - name: clone repos
       git:
-        repo=https://github.com/mofumofuchan/private-isu.git
-        dest=/home/isucon/repos/private_isu.git
+        repo=https://github.com/mofumofuchan/mlucon-proto.git
+        dest=/home/isucon/repos/mlucon_proto.git
     - name: remove .git
-      file: path=/home/isucon/repos/private_isu.git/.git state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/.git state=absent
     - name: clean ansible
-      file: path=/home/isucon/repos/private_isu.git/ansible state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/ansible state=absent
     - name: clean benchmarker
-      file: path=/home/isucon/repos/private_isu.git/benchmarker state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/benchmarker state=absent
     - name: clean e2etest
-      file: path=/home/isucon/repos/private_isu.git/e2etest state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/e2etest state=absent
     - name: clean portal
-      file: path=/home/isucon/repos/private_isu.git/portal state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/portal state=absent
     - name: clean provisioning
-      file: path=/home/isucon/repos/private_isu.git/provisioning state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/provisioning state=absent
     - name: clean provisioning
-      file: path=/home/isucon/repos/private_isu.git/README.md state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/README.md state=absent
     - name: git init
-      shell: "cd /home/isucon/repos/private_isu.git/ && git init && git add . && git config --global user.email 'test@example.com' && git config --global user.name 'admin' && git commit -m 'Initial commit'"
+      shell: "cd /home/isucon/repos/mlucon_proto.git/ && git init && git add . && git config --global user.email 'test@example.com' && git config --global user.name 'admin' && git commit -m 'Initial commit'"
     - name: create working copy
       git:
-        repo=file:///home/isucon/repos/private_isu.git
-        dest=/home/isucon/private_isu
+        repo=file:///home/isucon/repos/mlucon_proto.git
+        dest=/home/isucon/mlucon_proto
         update=yes
