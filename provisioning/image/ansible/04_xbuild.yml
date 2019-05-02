@@ -24,6 +24,10 @@
     - command: /home/isucon/.xbuild/go-install 1.9.7 /home/isucon/.local/go
       args:
         creates: /home/isucon/.local/go/bin/go
+    # python
+    - command: /home/isucon/.xbuild/python-install 3.5.2 /home/isucon/.local/python3
+      args:
+        creates: /home/isucon/.local/python3/bin/python
 
 - hosts: guests:extras
   become: yes
