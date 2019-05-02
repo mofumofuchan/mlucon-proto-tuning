@@ -34,9 +34,14 @@
     - name: clean provisioning
       file: path=/home/isucon/repos/mlucon_proto.git/README.md state=absent
     - name: clean python webapp git
-      file: path=/home/isucon/repos/mlucon_proto.git/webapp/python.git state=absent
+      file: path=/home/isucon/repos/mlucon_proto.git/webapp/python/.git state=absent
     - name: git init
       shell: "cd /home/isucon/repos/mlucon_proto.git/ && git init && git add . && git config --global user.email 'test@example.com' && git config --global user.name 'admin' && git commit -m 'Initial commit'"
+    - name: create working copy
+      git:
+        repo=file:///home/isucon/repos/mlucon_proto.git
+        dest=/home/isucon/mlucon_proto
+        update=yes
     - name: create working copy
       git:
         repo=file:///home/isucon/repos/mlucon_proto.git
