@@ -5,6 +5,6 @@
   gather_facts: no
   tasks:
     - name: create mysqldump
-      get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img/dump.sql.bz2 dest=/home/isucon/backup/mysqldump.sql.bz2 sha256sum=db27f63989a02babb6d47b1eb0ac1831d0f6d53f7de724407054feb2ff1d36c9 force=1
+      get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img2/dump.sql.bz2 dest=/home/isucon/backup/mysqldump.sql.bz2 sha256sum=ad4e00ba23e05ac869f5318212df34c2546ceb483571868d83329f496b800a88 force=1
     - name: create database
       shell: bzcat /home/isucon/backup/mysqldump.sql.bz2 | mysql -u root
