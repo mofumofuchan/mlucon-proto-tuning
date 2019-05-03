@@ -60,7 +60,7 @@ func prepareUserdata(userdata string) ([]user, []user, []user, []string, []*chec
 		sentences = append(sentences, sentence)
 	}
 
-	imgs, err := filepath.Glob(userdata + "/img/000*") // 00001.jpg, 00002.png, 00003.gif など
+	imgs, err := filepath.Glob(userdata + "/img/*")
 	if err != nil {
 		return nil, nil, nil, nil, nil, err
 	}
