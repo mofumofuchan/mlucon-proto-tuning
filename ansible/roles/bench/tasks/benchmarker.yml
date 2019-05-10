@@ -26,7 +26,7 @@
   apt: name=unzip state=latest
 
 - name: download images
-  get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img/img.zip dest={{ gopath }}/src/github.com/mofumofuchan/mlucon-proto/benchmarker/userdata/img.zip checksum=md5:4e66b924aa095030a9d152ab5f2015de
+  get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img2/img.zip dest={{ gopath }}/src/github.com/mofumofuchan/mlucon-proto/benchmarker/userdata/img.zip checksum=md5:2b37f48044a65e04c79c0e65dc260094
   register: imgzip
 
 - name: unarchive images
