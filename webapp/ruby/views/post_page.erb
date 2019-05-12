@@ -1,0 +1,13 @@
+<%= erb :post, locals: { post: post } %>
+<div class="isu-similar-images">
+  <span>similar images</span>
+  <ul>
+  <% sim_images.each do |fname| %>
+    <li style="">
+      <a href="<%= "/posts/#{fname.split(".")[0]}"%>">
+	<img src="/image/<%= fname %>">
+      </a>
+    </li>
+  <% end %>
+  </ul>
+</div>
