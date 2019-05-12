@@ -44,14 +44,6 @@
 
 - hosts: guests:extras
   become: yes
-  become_user: isucon
-  gather_facts: no
-  tasks:
-    - name: ml install
-      shell: cd /home/isucon/mlucon_proto/webapp/ml; bash -lc "/home/isucon/.local/python3/bin/pip install -r requirements.freeze"
-
-- hosts: guests:extras
-  become: yes
   tasks:
     - copy: src=../files/home/isucon/env.sh dest=/home/isucon/env.sh owner=isucon mode=644
     - name: ruby (systemd)
