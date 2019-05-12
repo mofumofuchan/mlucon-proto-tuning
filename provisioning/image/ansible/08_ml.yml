@@ -1,0 +1,22 @@
+- hosts: guests:extras
+  become: yes
+  tasks:
+    - name: download features
+      get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img2/features.tar.gz dest=/home/isucon/mlucon_proto/webbapp/ml/features.tar.gz checksum=md5:24fe2e239f36d1d92869d9c87101bfeb
+      register: features
+    - name: unarvhice features
+      unarchice: src=/home/isucon/mlucon_proto/webbapp/ml/features.tar.gz dest=/home/isucon/mlucon_proto/webbapp/ml/features
+      when: features.changed
+    #- name: remove features archive
+    #  file: path=/home/isucon/mlucon_proto/webbapp/ml/features.tar.gz state=absent
+    #  when: features.changed
+    - name: ml install
+      shell: cd /home/isucon/mlucon_proto/webapp/ml; bash -lc "pip install -r requirements.freeze"
+
+- hosts: guests:extras
+  become: yes
+  tasks:
+    - name: ml (systemd)
+      copy: src=../files/etc/systemd/system/isu-ml.service dest=/etc/systemd/system/isu-python.service owner=root mode=644
+    - name: start ml service
+      service: name=isu-ml state=started enabled=true
