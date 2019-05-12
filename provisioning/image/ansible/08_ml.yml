@@ -4,6 +4,8 @@
     - name: download features
       get_url: url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img2/features.tar.gz dest=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz checksum=md5:24fe2e239f36d1d92869d9c87101bfeb
       register: features
+    - name: create directory
+      file: path=/home/isucon/mlucon_proto/webapp/ml/features state=directory owner=isucon group=isucon mode=0755
     - name: unarvhice features
       unarchive: src=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz dest=/home/isucon/mlucon_proto/webapp/ml/features
       when: features.changed
