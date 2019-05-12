@@ -11,7 +11,7 @@
     #  file: path=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz state=absent
     #  when: features.changed
     - name: ml install
-      shell: cd /home/isucon/mlucon_proto/webapp/ml; bash -lc "pip install -r requirements.freeze"
+      shell: cd /home/isucon/mlucon_proto/webapp/ml; bash -lc "/home/isucon/.local/python3/bin/pip install -r requirements.freeze"
 
 - hosts: guests:extras
   become: yes
