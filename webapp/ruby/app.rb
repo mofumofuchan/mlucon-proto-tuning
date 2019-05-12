@@ -1,7 +1,12 @@
+# coding: utf-8
 require 'sinatra/base'
 require 'mysql2'
 require 'rack-flash'
 require 'shellwords'
+
+require 'json'
+require 'net/http'
+require 'uri'
 
 module Isuconp
   class App < Sinatra::Base
@@ -23,6 +28,10 @@ module Isuconp
             password: ENV['ISUCONP_DB_PASSWORD'],
             database: ENV['ISUCONP_DB_NAME'] || 'isuconp',
           },
+          ml: {
+            host: ENV['MLUCON_ML_HOST'] || 'localhost',
+            port: ENV['MLUCON_ML_PORT'] && ENV['MLUCON_ML_PORT'].to_i || 5001,
+          }
         }
       end
 
@@ -100,6 +109,7 @@ module Isuconp
       def make_posts(results, all_comments: false)
         posts = []
         results.to_a.each do |post|
+
           post[:comment_count] = db.prepare('SELECT COUNT(*) AS `count` FROM `comments` WHERE `post_id` = ?').execute(
             post[:id]
           ).first[:count]
@@ -287,7 +297,16 @@ module Isuconp
 
       me = get_session_user()
 
-      erb :post, layout: :layout, locals: { post: post, me: me }
+      host = config[:ml][:host]
+      port = config[:ml][:port]
+
+      url = URI("http://#{host}:#{port}")
+      url.path = "/image/#{params[:id]}/similar"
+      body = Net::HTTP.get(url)
+      res = JSON.parse(body)
+      sim_images = res.map {|item| item["fname"] }
+
+      erb :post_page, layout: :layout, locals: { post: post, me: me, sim_images: sim_images }
     end
 
     post '/' do
