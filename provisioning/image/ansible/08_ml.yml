@@ -17,6 +17,6 @@
   become: yes
   tasks:
     - name: ml (systemd)
-      copy: src=../files/etc/systemd/system/isu-ml.service dest=/etc/systemd/system/isu-python.service owner=root mode=644
+      copy: src=../files/etc/systemd/system/isu-ml.service dest=/etc/systemd/system/isu-ml.service owner=root mode=644
     - name: start ml service
       service: name=isu-ml state=started enabled=true
