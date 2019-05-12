@@ -7,7 +7,10 @@
     - name: create directory
       file: path=/home/isucon/mlucon_proto/webapp/ml/features state=directory owner=isucon group=isucon mode=0755
     - name: unarvhice features
-      unarchive: src=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz dest=/home/isucon/mlucon_proto/webapp/ml/features
+      unarchive:
+        src: /home/isucon/mlucon_proto/webapp/ml/features.tar.gz
+        dest: /home/isucon/mlucon_proto/webapp/ml/features
+        remote_src: yes
       when: features.changed
     #- name: remove features archive
     #  file: path=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz state=absent
