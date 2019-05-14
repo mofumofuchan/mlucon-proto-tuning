@@ -1,5 +1,6 @@
 import os
 import pathlib
+import io
 
 import flask
 import MySQLdb.cursors
@@ -9,6 +10,9 @@ import pymc_session
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+
+from chainer.links import VGG16Layers
+from PIL import Image
 
 
 _config = None
@@ -128,3 +132,26 @@ def get_similar_images(id):
         item['fname'] = str(item['id']) + ext
 
     return flask.jsonify(ret)
+
+
+_vgg16 = VGG16Layers(pretrained_model="./VGG_ILSVRC_16_layers.npz")
+
+
+@app.route("/image/<id>/extract_feature", methods=["GET"])
+def extract_feature(id):
+    global _image_features_dict
+
+    cursor = db().cursor()
+    cursor.execute("SELECT imgdata FROM posts where id = %s", (id,))
+    result = cursor.fetchone()
+
+    img = Image.open(io.BytesIO(result["imgdata"]))
+    img_np = np.array(img)
+
+    feat = _vgg16.extract(img_np[np.newaxis, :], layers=["fc7"])["fc7"].data
+    np.save(os.path.join(FEATURES_DIR, "{}.npy".format(id)), feat)
+    _image_features_dict[int(id)] = feat
+
+    ret_msg = {"message": "ok"}
+
+    return flask.jsonify(ret_msg)
