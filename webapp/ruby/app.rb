@@ -302,7 +302,18 @@ module Isuconp
 
       url = URI("http://#{host}:#{port}")
       url.path = "/image/#{params[:id]}/similar"
-      body = Net::HTTP.get(url)
+      response = Net::HTTP.get_response(url)
+
+      case response
+      when Net::HTTPRetriableError
+        return 300
+      when Net::HTTPServerException
+        return 400
+      when Net::HTTPFatalError
+        return 500
+      end
+      body = response.body
+
       res = JSON.parse(body)
       sim_images = res.map {|item| item["fname"] }
 
@@ -348,6 +359,22 @@ module Isuconp
           params["body"],
         )
         pid = db.last_id
+
+        host = config[:ml][:host]
+        port = config[:ml][:port]
+
+        url = URI("http://#{host}:#{port}")
+        url.path = "/image/#{pid}/extract_feature"
+        response = Net::HTTP.get_response(url)
+
+        case response
+        when Net::HTTPRetriableError
+          return 300
+        when Net::HTTPServerException
+          return 400
+        when Net::HTTPFatalError
+          return 500
+        end
 
         redirect "/posts/#{pid}", 302
       else
