@@ -13,6 +13,8 @@
     #- name: remove features archive
     #  file: path=/home/isucon/mlucon_proto/webapp/ml/features.tar.gz state=absent
     #  when: features.changed
+    - name: download VGG16 pre-trained model weight
+      get_url url=https://github.com/mofumofuchan/mlucon-proto/releases/download/img2/VGG_ILSVRC_16_layers.npz dest=/home/isucon/mlucon_proto/webapp/ml/VGG_ILSVRC_16_layers.npz checksum=md5:3a8f9e4405350bda32582f8ba5033db2
     - name: ml install
       shell: cd /home/isucon/mlucon_proto/webapp/ml; bash -lc "/home/isucon/.local/python3/bin/pip install -r requirements.freeze"
 
