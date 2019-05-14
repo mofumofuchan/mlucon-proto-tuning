@@ -15,6 +15,7 @@
       git:
         repo=https://github.com/mofumofuchan/mlucon-proto.git
         dest=/home/isucon/repos/mlucon_proto.git
+        version=develop
     - name: clone python repo
       git:
         repo=https://github.com/mofumofuchan/mlucon-proto-python.git
