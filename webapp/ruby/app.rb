@@ -349,6 +349,22 @@ module Isuconp
         )
         pid = db.last_id
 
+        host = config[:ml][:host]
+        port = config[:ml][:port]
+
+        url = URI("http://#{host}:#{port}")
+        url.path = "/image/#{pid}/extract_feature"
+        response = Net::HTTP.get_response(url)
+
+        case response
+        when Net::HTTPRetriableError
+          return 300
+        when Net::HTTPServerException
+          return 400
+        when Net::HTTPFatalError
+          return 500
+        end
+
         redirect "/posts/#{pid}", 302
       else
         flash[:notice] = '画像が必須です'
