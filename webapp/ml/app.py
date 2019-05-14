@@ -70,11 +70,12 @@ def memcache():
 
 
 # load image features
+FEATURES_DIR = "./features"
 _image_features_dict = {}
 
-npy_fnames = os.listdir("./features")
+npy_fnames = os.listdir(FEATURES_DIR)
 for fname in npy_fnames:
-    npy = np.load(os.path.join("./features", fname))
+    npy = np.load(os.path.join(FEATURES_DIR, fname))
     npy_no = os.path.splitext(fname)[0]
     _image_features_dict[int(npy_no)] = npy
 
