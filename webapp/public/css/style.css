@@ -41,6 +41,34 @@ a:hover {
   max-height: 1000px;
 }
 
+.isu-similar-images {
+  padding: 15px;
+  border: 1px solid gray;
+}
+
+.isu-similar-images > span {
+  margin: 0 15px 15px 15px;
+  font-color: rgb(80,80,80);
+}
+
+.isu-similar-images > ul {
+  padding: 0;
+  margin: 15px 15px;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.isu-similar-images img {
+  width: 150px;
+  height: 150px;
+  margin-top: 15px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 .isu-submit {
   margin-bottom: 25px;
 }
