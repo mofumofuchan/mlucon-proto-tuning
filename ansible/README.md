@@ -1,5 +1,5 @@
 ## setup
 
 ```
-$ ansible-playbook -i production setup.yml
+$ ansible-playbook -i production setup-bench.yml
 ```
